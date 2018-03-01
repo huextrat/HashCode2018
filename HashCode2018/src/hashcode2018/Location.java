@@ -10,8 +10,8 @@ package hashcode2018;
  * @author huextrat <extrat.h@gmail.com> <www.hugoextrat.com>
  */
 public class Location {
-    private final int posX;
-    private final int posY;
+    private int posX;
+    private int posY;
     
     public Location(int posX, int posY){
         this.posX = posX;
@@ -25,6 +25,43 @@ public class Location {
     public int getPosY() {
         return posY;
     }
+    
+    public void setPosX(int posX){
+        this.posX = posX;
+    }
+
+    public void setPosY(int posY) {
+        this.posY = posY;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Location other = (Location) obj;
+        if (this.posX != other.posX) {
+            return false;
+        }
+        if (this.posY != other.posY) {
+            return false;
+        }
+        return true;
+    }
+    
+    
     
     public int getDistance(Location loc){
         return Math.abs(posY - loc.posY) + Math.abs(posX - loc.posX);

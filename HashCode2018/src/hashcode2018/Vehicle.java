@@ -13,35 +13,47 @@ import java.util.List;
  * @author huextrat <extrat.h@gmail.com> <www.hugoextrat.com>
  */
 public class Vehicle {
-    private Location location;
+    private Location location, dest;
     private boolean isUsed;
     
-    private ArrayList<Ride> ridesDone = new ArrayList<>();
+    private int id;
+    public ArrayList<Ride> ridesDone = new ArrayList<>();
     //private int distance;
     
-    public Vehicle(Location location, boolean isUsed){
+    public Vehicle(int id, Location location, Location dest, boolean isUsed){
+        this.id = id;
         this.location = location;
         this.isUsed = isUsed;
+        this.dest = dest;
     }
     
-    public boolean canDrive(Ride nextRide){
-        Location loc, nextLoc;
-        int lastTime, distance, latestStart;
-        
-        if(ridesDone.isEmpty()){
-            loc = new Location(0, 0);
-            lastTime = 0;
+    public String getRidesDone(){
+        String s = "";
+        for(Ride r: ridesDone){
+            s+=r.getTotalDistance();
         }
-        else {
-            loc = ridesDone.get(ridesDone.size()).getEnd();
-            lastTime = ridesDone.get(ridesDone.size()).getTimeFinished();
-        }
-        nextLoc = nextRide.getStart();
-        distance = loc.getDistance(nextLoc);
-        latestStart = nextRide.getLatestStarted();
-        
-        return lastTime + distance;
+        return s;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    
+
+    public Location getDest() {
+        return dest;
+    }
+
+    public void setDest(Location dest) {
+        this.dest = dest;
+    }
+    
+    
 
     public Location getLocation() {
         return location;
@@ -57,15 +69,5 @@ public class Vehicle {
 
     public void setIsUsed(boolean isUsed) {
         this.isUsed = isUsed;
-    }
-
-    public int getDistance() {
-        return distance;
-    }
-
-    public void setDistance(int distance) {
-        this.distance = distance;
-    }
-    
-    
+    }    
 }

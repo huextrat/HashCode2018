@@ -10,17 +10,57 @@ package hashcode2018;
  * @author huextrat <extrat.h@gmail.com> <www.hugoextrat.com>
  */
 public class Ride implements Comparable<Ride> {
+    private int id, score, distance;
     private Location start, end;
     private int timeEarliest, timeLatest;
+    private boolean isRunning;
     
     private int startedTime = 0;
     
-    public Ride(Location start, Location end, int timeEarliest, int timeLatest){
+    public Ride(int id, Location start, Location end, int timeEarliest, int timeLatest){
+        this.id = id;
+        this.score = 0;
+        this.distance = 0;
         this.start = start;
         this.end = end;
         this.timeEarliest = timeEarliest;
         this.timeLatest = timeLatest;
+        this.isRunning = false;
     }
+
+    public boolean isIsRunning() {
+        return isRunning;
+    }
+
+    public void setIsRunning(boolean isRunning) {
+        this.isRunning = isRunning;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public int getDistance() {
+        return distance;
+    }
+
+    public void setDistance(int distance) {
+        this.distance = distance;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    
     
     public int getTimeFinished(){
         return startedTime + getTotalDistance();
@@ -36,7 +76,7 @@ public class Ride implements Comparable<Ride> {
 
     @Override
     public int compareTo(Ride o) {
-        return this.timeLatest - o.timeLatest;
+        return this.timeEarliest - o.timeEarliest;
     }
 
     public Location getStart() {
