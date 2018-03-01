@@ -13,16 +13,30 @@ public class Ride implements Comparable<Ride> {
     private Location start, end;
     private int timeEarliest, timeLatest;
     
+    private int startedTime = 0;
+    
     public Ride(Location start, Location end, int timeEarliest, int timeLatest){
         this.start = start;
         this.end = end;
         this.timeEarliest = timeEarliest;
         this.timeLatest = timeLatest;
     }
+    
+    public int getTimeFinished(){
+        return startedTime + getTotalDistance();
+    }
+    
+    public int getLatestStarted(){
+        return timeLatest - getTotalDistance();
+    }
+    
+    public int getTotalDistance(){
+        return start.getDistance(end);
+    }
 
     @Override
     public int compareTo(Ride o) {
-        return this.timeEarliest - o.timeEarliest;
+        return this.timeLatest - o.timeLatest;
     }
 
     public Location getStart() {

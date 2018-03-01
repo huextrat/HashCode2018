@@ -26,5 +26,7 @@ public class Location {
         return posY;
     }
     
-    
+    public int getDistance(Location loc){
+        return Math.abs(posY - loc.posY) + Math.abs(posX - loc.posX);
+    }
 }
